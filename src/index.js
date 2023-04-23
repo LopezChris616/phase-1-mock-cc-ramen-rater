@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ramens.forEach(ramen => {
                 getAllRamens(ramen);
             });
-            addNewRamen(ramens);
+            addNewRamen();
         });
 });
 
@@ -35,10 +35,25 @@ function displayRamen(selectedRamen, ramen) {
     })
 }
 
-function addNewRamen(ramen) {
+function addNewRamen() {
     const newRamen = document.getElementById("new-ramen");
     newRamen.addEventListener("submit", event => {
         event.preventDefault();
-        console.log("submitted");
+        const ramenName = event.target[0].value;
+        const ramenRestaurant = event.target[1].value;
+        const ramenImage = event.target[2].value;
+        const ramenRating = event.target[3].value;
+        const ramenComment = event.target[4].value;
+
+        function Ramen(name, restaurant, image, rating, comment) {
+            this.name = name;
+            this.restaurant = restaurant;
+            this.image = image;
+            this.rating = rating;
+            this.comment = comment;
+        }
+
+        const submitRamen = new Ramen(ramenName, ramenRestaurant, ramenImage, ramenRating, ramenComment);
+        getAllRamens(submitRamen);
     })
 }
